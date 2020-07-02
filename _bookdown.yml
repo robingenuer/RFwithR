@@ -1,5 +1,5 @@
-book_filename: "pur_rf.Rmd"
+book_filename: "RFwithR.Rmd"
 new_session: no
 output_dir: "docs"
 ui:
-  chapter_name: "Chapitre "
+  chapter_name: "Chapter "

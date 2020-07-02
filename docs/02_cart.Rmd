@@ -1,6 +1,6 @@
-# 2 Arbres CART
+# 2 CART
 
-## 2.4 Le package `rpart`
+## 2.4 The `rpart` package
 
 ```{r cartTreeDef, fig.cap="Arbre de classification obtenu avec les valeurs par défaut de `rpart()`, données `spam`.", fig.width=8.5, fig.height=6}
 library(rpart)
@@ -38,25 +38,25 @@ errEmpTreeMax <- mean(predict(treeMax, spamApp, type = "class") !=
                         spamApp$type)
 ```
 
-## 2.5 Découpes concurrentes et de substitution
+## 2.5 Competing and surrogate splits
 
-### 2.5.2 Découpes de substitution
+### 2.5.2 Surrogate splits
 
 ```{r cartTreeStump}
 treeStump <- rpart(type ~ ., data = spamApp, maxdepth = 1)
 summary(treeStump)
 ```
 
-### 2.5.3 Interprétabilité
+### 2.5.3 Interpretability
 
 ```{r cartVarImp, fig.width=8, fig.cap="Importance des variables au sens de CART pour l'arbre maximal, données `spam`."}
 par(mar=c(7, 3, 1, 1) + 0.1)
 barplot(treeMax$variable.importance, las = 2, cex.names = 0.8)
 ```
 
-## 2.6 Exemples
+## 2.6 Examples
 
-### 2.6.1 Prédire la concentration d’ozone
+### 2.6.1 Predicting ozone concentration
 
 ```{r cartOzoneLoad}
 library("rpart")
@@ -83,7 +83,7 @@ plot(OzTreeOpt)
 text(OzTreeOpt, xpd = TRUE)
 ```
 
-### 2.6.2 Analyser des données génomiques
+### 2.6.2 Analyzing genomic data
 
 ```{r cartVac18Load}
 library(rpart)

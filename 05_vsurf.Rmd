@@ -1,6 +1,6 @@
-# 5 Sélection de variables
+# 5 Variable selection
 
-## 5.4 Le package VSURF
+## 5.4 The `VSURF` package
 
 ```{r vsurfLoad}
 library(VSURF)
@@ -62,7 +62,7 @@ vsurfSpamPred <- VSURF_pred(type~., spamApp, nmj = 15,
 colnames(spamApp[vsurfSpamPred$varselect.pred])
 ```
 
-## 5.5 Réglage des paramètres pour la sélection
+## 5.5 Parameters setting for selection
 
 ```{r vsurfStump}
 vsurfToysStump <- VSURF(toys$x, toys$y, mtry = 100, maxnodes = 2)
@@ -86,9 +86,9 @@ vsurfPredToysTuned <- VSURF_pred(toys$x, toys$y,
 vsurfPredToysTuned$varselect.pred
 ```
 
-## 5.6 Exemples
+## 5.6 Examples
 
-### 5.6.1 Prédire la concentration d’ozone
+### 5.6.1 Predicting ozone concentration
 
 ```{r vsurfOzLoad}
 library(VSURF)
@@ -113,7 +113,7 @@ number[OzVSURF$varselect.interp]
 number[OzVSURF$varselect.pred]
 ```
 
-### 5.6.2 Analyser des données génomiques
+### 5.6.2 Analyzing genomic data
 
 ```{r vsurfVac18Load}
 library(VSURF)

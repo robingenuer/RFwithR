@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Random Forests with R</title>
+  <title>4 Variable importance | Random Forests with R</title>
   <meta name="description" content="Book website" />
   <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Random Forests with R" />
+  <meta property="og:title" content="4 Variable importance | Random Forests with R" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Random Forests with R" />
+  <meta name="twitter:title" content="4 Variable importance | Random Forests with R" />
   
   <meta name="twitter:description" content="Book website" />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
-<link rel="next" href="introduction.html"/>
+<link rel="prev" href="random-forests.html"/>
+<link rel="next" href="variable-selection.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -203,35 +203,68 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">Random Forests with R</h1>
-<h2 class="subtitle"><em><em>The book website</em></em></h2>
-<p class="author"><em><a href="https://robin.genuer.fr">Robin Genuer</a> et <a href="https://www.math.u-psud.fr/~poggi/">Jean-Michel Poggi</a></em></p>
-<p class="date"><em>2020-07-02</em></p>
+<div id="variable-importance" class="section level1">
+<h1>4 Variable importance</h1>
+<div id="notions-of-importance" class="section level2">
+<h2>4.1 Notions of importance</h2>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb52-1" data-line-number="1">RFDefImp &lt;-<span class="st"> </span><span class="kw">randomForest</span>(type <span class="op">~</span><span class="st"> </span>., <span class="dt">data =</span> spamApp, <span class="dt">importance=</span><span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb52-2" data-line-number="2"><span class="kw">varImpPlot</span>(RFDefImp, <span class="dt">type =</span> <span class="dv">1</span>, <span class="dt">scale =</span> <span class="ot">FALSE</span>, <span class="dt">n.var =</span> <span class="kw">ncol</span>(spamApp) <span class="op">-</span><span class="st"> </span><span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb52-3" data-line-number="3">           <span class="dt">cex =</span> <span class="fl">0.8</span>, <span class="dt">main =</span> <span class="st">&quot;Importance des variables&quot;</span>)</a></code></pre></div>
 </div>
-<div id="preamble" class="section level1 unnumbered">
-<h1>Preamble</h1>
-<p>This page contains all R code included in our book “Random Forests with R”
-by Robin Genuer and Jean-Michel Poggi.</p>
-<!-- **You can order the book [here]().** -->
-<p>You can navigate directly on this page using the left bar and R scripts
-(R or Rmd fils per chapter) can also be downloaded
-<a href="https://github.com/robingenuer/RFwithR">here</a> or thanks to the following
-links:</p>
-<p>Chapitre 1 Introduction (<a href="01_intro.R">R</a>, <a href="01_intro.Rmd">Rmd</a>)</p>
-<p>Chapitre 2 CART (<a href="02_cart.R">R</a>, <a href="02_cart.Rmd">Rmd</a>)</p>
-<p>Chapitre 3 Random Forests (<a href="03_rf.R">R</a>, <a href="03_rf.Rmd">Rmd</a>)</p>
-<p>Chapitre 4 Variable importance (<a href="04_imp.R">R</a>, <a href="04_imp.Rmd">Rmd</a>)</p>
-<p>Chapitre 5 Variable selection (<a href="05_vsurf.R">R</a>, <a href="05_vsurf.Rmd">Rmd</a>)</p>
+<div id="tree-diversity-and-importance" class="section level2">
+<h2>4.3 Tree diversity and importance</h2>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb53-1" data-line-number="1">bagStumpImp &lt;-<span class="st"> </span><span class="kw">randomForest</span>(type<span class="op">~</span>., spamApp, <span class="dt">mtry =</span> <span class="kw">ncol</span>(spamApp) <span class="op">-</span><span class="st"> </span><span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb53-2" data-line-number="2">                            <span class="dt">maxnodes=</span><span class="dv">2</span>, <span class="dt">importance=</span><span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb53-3" data-line-number="3"><span class="kw">varImpPlot</span>(bagStumpImp, <span class="dt">type =</span> <span class="dv">1</span>, <span class="dt">scale =</span> <span class="ot">FALSE</span>, <span class="dt">n.var =</span> <span class="dv">20</span>, <span class="dt">cex =</span> <span class="fl">0.8</span>,</a>
+<a class="sourceLine" id="cb53-4" data-line-number="4">           <span class="dt">main =</span> <span class="st">&quot;Importance des variables&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb54-1" data-line-number="1">RFStumpImp &lt;-<span class="st"> </span><span class="kw">randomForest</span>(type<span class="op">~</span>., spamApp, <span class="dt">maxnodes=</span><span class="dv">2</span>, <span class="dt">importance=</span><span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb54-2" data-line-number="2"><span class="kw">varImpPlot</span>(RFStumpImp, <span class="dt">type =</span> <span class="dv">1</span>, <span class="dt">scale =</span> <span class="ot">FALSE</span>, <span class="dt">n.var =</span> <span class="dv">20</span>, <span class="dt">cex =</span> <span class="fl">0.8</span>,</a>
+<a class="sourceLine" id="cb54-3" data-line-number="3">           <span class="dt">main =</span> <span class="st">&quot;Importance des variables&quot;</span>)</a></code></pre></div>
+</div>
+<div id="examples" class="section level2">
+<h2>4.5 Examples</h2>
+<div id="an-illustration-by-simulation-in-regression" class="section level3">
+<h3>4.5.1 An illustration by simulation in regression</h3>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb55-1" data-line-number="1"><span class="kw">library</span>(mlbench)</a>
+<a class="sourceLine" id="cb55-2" data-line-number="2">fried1Simu &lt;-<span class="st"> </span><span class="kw">mlbench.friedman1</span>(<span class="dt">n =</span> <span class="dv">500</span>)</a>
+<a class="sourceLine" id="cb55-3" data-line-number="3">fried1Data &lt;-<span class="st"> </span><span class="kw">data.frame</span>(fried1Simu<span class="op">$</span>x, <span class="dt">y =</span> fried1Simu<span class="op">$</span>y)</a>
+<a class="sourceLine" id="cb55-4" data-line-number="4">fried1RFimp &lt;-<span class="st"> </span><span class="kw">randomForest</span>(y <span class="op">~</span>., fried1Data, <span class="dt">importance =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb55-5" data-line-number="5"><span class="kw">varImpPlot</span>(fried1RFimp, <span class="dt">type =</span> <span class="dv">1</span>, <span class="dt">scale =</span> <span class="ot">FALSE</span>,</a>
+<a class="sourceLine" id="cb55-6" data-line-number="6">           <span class="dt">main =</span> <span class="st">&quot;Importance des variables&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb56-1" data-line-number="1"><span class="kw">partialPlot</span>(fried1RFimp, fried1Data, <span class="dt">x.var =</span> <span class="st">&quot;X1&quot;</span>, <span class="dt">main =</span> <span class="st">&quot;X1&quot;</span>)</a></code></pre></div>
+</div>
+<div id="predicting-ozone-concentration" class="section level3">
+<h3>4.5.2 Predicting ozone concentration</h3>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb57-1" data-line-number="1"><span class="kw">library</span>(<span class="st">&quot;randomForest&quot;</span>)</a>
+<a class="sourceLine" id="cb57-2" data-line-number="2"><span class="kw">data</span>(<span class="st">&quot;Ozone&quot;</span>, <span class="dt">package =</span> <span class="st">&quot;mlbench&quot;</span>)</a>
+<a class="sourceLine" id="cb57-3" data-line-number="3">OzRFDefImp &lt;-<span class="st"> </span><span class="kw">randomForest</span>(V4 <span class="op">~</span><span class="st"> </span>., Ozone, <span class="dt">na.action =</span> na.omit,</a>
+<a class="sourceLine" id="cb57-4" data-line-number="4">                           <span class="dt">importance =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb58-1" data-line-number="1"><span class="kw">varImpPlot</span>(OzRFDefImp, <span class="dt">type =</span> <span class="dv">1</span>, <span class="dt">scale =</span> <span class="ot">FALSE</span>,</a>
+<a class="sourceLine" id="cb58-2" data-line-number="2">           <span class="dt">main =</span> <span class="st">&quot;Importance des variables&quot;</span>)</a></code></pre></div>
+</div>
+<div id="analyzing-genomic-data" class="section level3">
+<h3>4.5.3 Analyzing genomic data</h3>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb59-1" data-line-number="1"><span class="kw">library</span>(randomForest)</a>
+<a class="sourceLine" id="cb59-2" data-line-number="2"><span class="kw">data</span>(<span class="st">&quot;vac18&quot;</span>, <span class="dt">package =</span> <span class="st">&quot;mixOmics&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb60-1" data-line-number="1">geneExpr &lt;-<span class="st"> </span>vac18<span class="op">$</span>genes</a>
+<a class="sourceLine" id="cb60-2" data-line-number="2">stimu &lt;-<span class="st"> </span>vac18<span class="op">$</span>stimulation</a></code></pre></div>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb61-1" data-line-number="1">vacRFDefImp &lt;-<span class="st"> </span><span class="kw">randomForest</span>(<span class="dt">x =</span> geneExpr, <span class="dt">y =</span> stimu, <span class="dt">mtry =</span> <span class="kw">ncol</span>(geneExpr)<span class="op">/</span><span class="dv">3</span>,</a>
+<a class="sourceLine" id="cb61-2" data-line-number="2">                            <span class="dt">importance =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb62-1" data-line-number="1"><span class="kw">varImpPlot</span>(vacRFDefImp, <span class="dt">type =</span> <span class="dv">1</span>, <span class="dt">scale =</span> <span class="ot">FALSE</span>, <span class="dt">cex =</span> <span class="fl">0.8</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb63-1" data-line-number="1">vacImp &lt;-<span class="st"> </span>vacRFDefImp<span class="op">$</span>importance[, <span class="kw">nlevels</span>(stimu) <span class="op">+</span><span class="st"> </span><span class="dv">1</span>]</a>
+<a class="sourceLine" id="cb63-2" data-line-number="2"><span class="kw">plot</span>(<span class="kw">sort</span>(vacImp, <span class="dt">decreasing =</span> <span class="ot">TRUE</span>), <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>, <span class="dt">xlab =</span> <span class="st">&quot;Variables&quot;</span>,</a>
+<a class="sourceLine" id="cb63-3" data-line-number="3">     <span class="dt">ylab =</span> <span class="st">&quot;Importance des variables&quot;</span>)</a></code></pre></div>
 
+</div>
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-
-<a href="introduction.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="random-forests.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="variable-selection.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

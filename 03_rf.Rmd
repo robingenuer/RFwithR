@@ -1,8 +1,8 @@
-# 3 Forêts aléatoires
+# 3 Random Forests
 
-## 3.1 Principe général
+## 3.1 General principle
 
-### 3.1.1 Instabilité d’un arbre
+### 3.1.1 Instability of a tree
 
 ```{r rfTreeBoot1, fig.cap="Arbre de classification obtenu avec les valeurs par défaut de `rpart()` sur l'échantillon bootstrap `spamBoot1`", fig.width=8.5, fig.height=6}
 set.seed(368910)
@@ -23,7 +23,7 @@ mean(predict(treeBoot1, spamTest, type = "class") !=
      predict(treeBoot2, spamTest, type = "class"))
 ```
 
-### 3.1.2 D’un arbre à un ensemble : le Bagging
+### 3.1.2 From a tree to an ensemble: the Bagging
 
 ```{r rfLibrary}
 library(randomForest)
@@ -37,7 +37,7 @@ errTestBagging <- mean(predict(bagging, spamTest) != spamTest$type)
 errEmpBagging <- mean(predict(bagging, spamApp) != spamApp$type)
 ```
 
-## 3.3 Le package randomForest
+## 3.3 The `randomForest` package
 
 ```{r rfRFDef}
 RFDef <- randomForest(type ~ ., data = spamApp)
@@ -51,9 +51,9 @@ errTestRFDef <- mean(predict(RFDef, spamTest) != spamTest$type)
 errEmpRFDef <- mean(predict(RFDef, spamApp) != spamApp$type)
 ```
 
-## 3.5 Réglage des paramètres pour la prédiction
+## 3.5 Parameters setting for prediction
 
-### 3.5.1 Le nombre d’arbres `ntree`
+### 3.5.1 The number of trees: `ntree`
 
 ```{r rfPlotRFDefEcho}
 plot(RFDef)
@@ -62,7 +62,7 @@ plot(RFDef)
 RFDoTrace <- randomForest(type~., data=spamApp, ntree = 250, do.trace=25)
 ```
 
-### 3.5.2 Le nombre de variables choisies à chaque noeud `mtry`
+### 3.5.2 The number of variables chosen at each node: `mtry`
 
 ```{r rfTuneMtryEcho}
 nbvars <- 1:(ncol(spamApp) - 1)
@@ -90,9 +90,9 @@ names(RFStumpbestvar) <- colnames(spamApp)[as.numeric(names(RFStumpbestvar))]
 sort(RFStumpbestvar, decreasing = TRUE)
 ```
 
-## 3.6 Exemples
+## 3.6 Examples
 
-### 3.6.1 Prédire la concentration d’ozone
+### 3.6.1 Predicting ozone concentration
 
 ```{r rfOzoneLoad}
 library("randomForest")
@@ -117,7 +117,7 @@ OzRFDefStrat <- randomForest(V4 ~ . - V9 - V4bin, OzoneBin, strata = V4bin,
 OzRFDefStrat
 ```
 
-### 3.6.2 Analyser des données génomiques
+### 3.6.2 Analyzing genomic data
 
 ```{r rfVac18Load}
 library(randomForest)
@@ -140,7 +140,7 @@ VacOOBpsur3 <- replicate(nFor,
   randomForest(geneExpr, stimu, mtry = ncol(geneExpr)/3)$err.rate[500, "OOB"])
 ```
 
-### 3.6.3 Analyser la pollution par les poussières
+### 3.6.3 Analyzing dust pollution
 
 ```{r rfPM10load}
 library(randomForest)

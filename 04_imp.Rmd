@@ -1,6 +1,6 @@
-# 4 Importance des variables
+# 4 Variable importance
 
-## 4.1 Notions d’importance
+## 4.1 Notions of importance
 
 ```{r impRFDef, fig.height=8, fig.cap="Importances des variables classées par ordre décroissant pour le jeu de données `spam`"}
 RFDefImp <- randomForest(type ~ ., data = spamApp, importance=TRUE)
@@ -8,7 +8,7 @@ varImpPlot(RFDefImp, type = 1, scale = FALSE, n.var = ncol(spamApp) - 1,
            cex = 0.8, main = "Importance des variables")
 ```
 
-## 4.3 Diversité des arbres et importance des variables
+## 4.3 Tree diversity and importance
 
 ```{r impBagStump, fig.cap="Importance des variables pour un Bagging d'arbres à deux feuilles, données `spam`."}
 bagStumpImp <- randomForest(type~., spamApp, mtry = ncol(spamApp) - 1,
@@ -22,9 +22,9 @@ varImpPlot(RFStumpImp, type = 1, scale = FALSE, n.var = 20, cex = 0.8,
            main = "Importance des variables")
 ```
 
-## 4.5 Exemples
+## 4.5 Examples
 
-### 4.5.1 Une illustration par simulation en régression
+### 4.5.1 An illustration by simulation in regression
 
 ```{r impFried, fig.cap="Importance des variables, données simulées en régression."}
 library(mlbench)
@@ -38,7 +38,7 @@ varImpPlot(fried1RFimp, type = 1, scale = FALSE,
 partialPlot(fried1RFimp, fried1Data, x.var = "X1", main = "X1")
 ```
 
-### 4.5.2 Prédire la concentration d’ozone
+### 4.5.2 Predicting ozone concentration
 
 ```{r impOzoneLoad}
 library("randomForest")
@@ -51,7 +51,7 @@ varImpPlot(OzRFDefImp, type = 1, scale = FALSE,
            main = "Importance des variables")
 ```
 
-### 4.5.3 Analyser des données génomiques
+### 4.5.3 Analyzing genomic data
 
 ```{r impVac18load}
 library(randomForest)

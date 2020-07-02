@@ -1,8 +1,8 @@
 # 1 Introduction
 
-## 1.5 Jeux de données
+## 1.5 Data sets
 
-### 1.5.1 Jeu de données fil rouge : détection de spams
+### 1.5.1 Running example: spam detection
 
 ```{r introSpamLoad, tidy=FALSE}
 data("spam", package = "kernlab")
@@ -15,15 +15,20 @@ spamApp <- spam[indApp, ]
 spamTest <- spam[-indApp, ]
 ```
 
-### 1.5.2 Pollution à l'ozone
+### 1.5.2 Ozone pollution
 
 ```{r introOzoneLoad}
 data("Ozone", package = "mlbench")
 ```
 
-### 1.5.3 Analyser des données génomiques pour une étude vaccinale
+### 1.5.3 Genomic data for a vaccine study
 
 ```{r introVac18Load}
 data("vac18", package = "mixOmics")
 ```
 
+### 1.5.4 Dust pollution
+
+```{r introJusLoad}
+data("jus", package = "VSURF")
+```

@@ -4,21 +4,21 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>1 Introduction | Les Forêts aléatoires avec R</title>
-  <meta name="description" content="Site du livre" />
+  <title>1 Introduction | Random Forests with R</title>
+  <meta name="description" content="Book website" />
   <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="1 Introduction | Les Forêts aléatoires avec R" />
+  <meta property="og:title" content="1 Introduction | Random Forests with R" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="Site du livre" />
+  <meta property="og:description" content="Book website" />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="1 Introduction | Les Forêts aléatoires avec R" />
+  <meta name="twitter:title" content="1 Introduction | Random Forests with R" />
   
-  <meta name="twitter:description" content="Site du livre" />
+  <meta name="twitter:description" content="Book website" />
   
 
 <meta name="author" content="Robin Genuer et Jean-Michel Poggi" />
@@ -32,7 +32,7 @@
   
   
 <link rel="prev" href="index.html"/>
-<link rel="next" href="arbres-cart.html"/>
+<link rel="next" href="cart.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -127,59 +127,60 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./">Les Forêts aléatoires avec R</a></li>
+<li><a href="./">Random Forests with R</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Préambule</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preamble</a></li>
 <li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i>1 Introduction</a><ul>
-<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#jeux-de-données"><i class="fa fa-check"></i>1.5 Jeux de données</a><ul>
-<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#jeu-de-données-fil-rouge-détection-de-spams"><i class="fa fa-check"></i>1.5.1 Jeu de données fil rouge : détection de spams</a></li>
-<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#pollution-à-lozone"><i class="fa fa-check"></i>1.5.2 Pollution à l’ozone</a></li>
-<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#analyser-des-données-génomiques-pour-une-étude-vaccinale"><i class="fa fa-check"></i>1.5.3 Analyser des données génomiques pour une étude vaccinale</a></li>
+<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#data-sets"><i class="fa fa-check"></i>1.5 Data sets</a><ul>
+<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#running-example-spam-detection"><i class="fa fa-check"></i>1.5.1 Running example: spam detection</a></li>
+<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#ozone-pollution"><i class="fa fa-check"></i>1.5.2 Ozone pollution</a></li>
+<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#genomic-data-for-a-vaccine-study"><i class="fa fa-check"></i>1.5.3 Genomic data for a vaccine study</a></li>
+<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#dust-pollution"><i class="fa fa-check"></i>1.5.4 Dust pollution</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="arbres-cart.html"><a href="arbres-cart.html"><i class="fa fa-check"></i>2 Arbres CART</a><ul>
-<li><a href="arbres-cart.html#le-package-rpart">2.4 Le package <code>rpart</code></a></li>
-<li class="chapter" data-level="" data-path="arbres-cart.html"><a href="arbres-cart.html#découpes-concurrentes-et-de-substitution"><i class="fa fa-check"></i>2.5 Découpes concurrentes et de substitution</a><ul>
-<li class="chapter" data-level="" data-path="arbres-cart.html"><a href="arbres-cart.html#découpes-de-substitution"><i class="fa fa-check"></i>2.5.2 Découpes de substitution</a></li>
-<li class="chapter" data-level="" data-path="arbres-cart.html"><a href="arbres-cart.html#interprétabilité"><i class="fa fa-check"></i>2.5.3 Interprétabilité</a></li>
+<li class="chapter" data-level="" data-path="cart.html"><a href="cart.html"><i class="fa fa-check"></i>2 CART</a><ul>
+<li><a href="cart.html#the-rpart-package">2.4 The <code>rpart</code> package</a></li>
+<li class="chapter" data-level="" data-path="cart.html"><a href="cart.html#competing-and-surrogate-splits"><i class="fa fa-check"></i>2.5 Competing and surrogate splits</a><ul>
+<li class="chapter" data-level="" data-path="cart.html"><a href="cart.html#surrogate-splits"><i class="fa fa-check"></i>2.5.2 Surrogate splits</a></li>
+<li class="chapter" data-level="" data-path="cart.html"><a href="cart.html#interpretability"><i class="fa fa-check"></i>2.5.3 Interpretability</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="arbres-cart.html"><a href="arbres-cart.html#exemples"><i class="fa fa-check"></i>2.6 Exemples</a><ul>
-<li class="chapter" data-level="" data-path="arbres-cart.html"><a href="arbres-cart.html#prédire-la-concentration-dozone"><i class="fa fa-check"></i>2.6.1 Prédire la concentration d’ozone</a></li>
-<li class="chapter" data-level="" data-path="arbres-cart.html"><a href="arbres-cart.html#analyser-des-données-génomiques"><i class="fa fa-check"></i>2.6.2 Analyser des données génomiques</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="forêts-aléatoires.html"><a href="forêts-aléatoires.html"><i class="fa fa-check"></i>3 Forêts aléatoires</a><ul>
-<li class="chapter" data-level="" data-path="forêts-aléatoires.html"><a href="forêts-aléatoires.html#principe-général"><i class="fa fa-check"></i>3.1 Principe général</a><ul>
-<li class="chapter" data-level="" data-path="forêts-aléatoires.html"><a href="forêts-aléatoires.html#instabilité-dun-arbre"><i class="fa fa-check"></i>3.1.1 Instabilité d’un arbre</a></li>
-<li class="chapter" data-level="" data-path="forêts-aléatoires.html"><a href="forêts-aléatoires.html#dun-arbre-à-un-ensemble-le-bagging"><i class="fa fa-check"></i>3.1.2 D’un arbre à un ensemble : le Bagging</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="forêts-aléatoires.html"><a href="forêts-aléatoires.html#le-package-randomforest"><i class="fa fa-check"></i>3.3 Le package randomForest</a></li>
-<li class="chapter" data-level="" data-path="forêts-aléatoires.html"><a href="forêts-aléatoires.html#réglage-des-paramètres-pour-la-prédiction"><i class="fa fa-check"></i>3.5 Réglage des paramètres pour la prédiction</a><ul>
-<li><a href="forêts-aléatoires.html#le-nombre-darbres-ntree">3.5.1 Le nombre d’arbres <code>ntree</code></a></li>
-<li><a href="forêts-aléatoires.html#le-nombre-de-variables-choisies-à-chaque-noeud-mtry">3.5.2 Le nombre de variables choisies à chaque noeud <code>mtry</code></a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="arbres-cart.html"><a href="arbres-cart.html#exemples"><i class="fa fa-check"></i>3.6 Exemples</a><ul>
-<li class="chapter" data-level="" data-path="arbres-cart.html"><a href="arbres-cart.html#prédire-la-concentration-dozone"><i class="fa fa-check"></i>3.6.1 Prédire la concentration d’ozone</a></li>
-<li class="chapter" data-level="" data-path="arbres-cart.html"><a href="arbres-cart.html#analyser-des-données-génomiques"><i class="fa fa-check"></i>3.6.2 Analyser des données génomiques</a></li>
-<li class="chapter" data-level="" data-path="forêts-aléatoires.html"><a href="forêts-aléatoires.html#analyser-la-pollution-par-les-poussières"><i class="fa fa-check"></i>3.6.3 Analyser la pollution par les poussières</a></li>
+<li class="chapter" data-level="" data-path="cart.html"><a href="cart.html#examples"><i class="fa fa-check"></i>2.6 Examples</a><ul>
+<li class="chapter" data-level="" data-path="cart.html"><a href="cart.html#predicting-ozone-concentration"><i class="fa fa-check"></i>2.6.1 Predicting ozone concentration</a></li>
+<li class="chapter" data-level="" data-path="cart.html"><a href="cart.html#analyzing-genomic-data"><i class="fa fa-check"></i>2.6.2 Analyzing genomic data</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="importance-des-variables.html"><a href="importance-des-variables.html"><i class="fa fa-check"></i>4 Importance des variables</a><ul>
-<li class="chapter" data-level="" data-path="importance-des-variables.html"><a href="importance-des-variables.html#notions-dimportance"><i class="fa fa-check"></i>4.1 Notions d’importance</a></li>
-<li class="chapter" data-level="" data-path="importance-des-variables.html"><a href="importance-des-variables.html#diversité-des-arbres-et-importance-des-variables"><i class="fa fa-check"></i>4.3 Diversité des arbres et importance des variables</a></li>
-<li class="chapter" data-level="" data-path="arbres-cart.html"><a href="arbres-cart.html#exemples"><i class="fa fa-check"></i>4.5 Exemples</a><ul>
-<li class="chapter" data-level="" data-path="importance-des-variables.html"><a href="importance-des-variables.html#une-illustration-par-simulation-en-régression"><i class="fa fa-check"></i>4.5.1 Une illustration par simulation en régression</a></li>
-<li class="chapter" data-level="" data-path="arbres-cart.html"><a href="arbres-cart.html#prédire-la-concentration-dozone"><i class="fa fa-check"></i>4.5.2 Prédire la concentration d’ozone</a></li>
-<li class="chapter" data-level="" data-path="arbres-cart.html"><a href="arbres-cart.html#analyser-des-données-génomiques"><i class="fa fa-check"></i>4.5.3 Analyser des données génomiques</a></li>
+<li class="chapter" data-level="" data-path="random-forests.html"><a href="random-forests.html"><i class="fa fa-check"></i>3 Random Forests</a><ul>
+<li class="chapter" data-level="" data-path="random-forests.html"><a href="random-forests.html#general-principle"><i class="fa fa-check"></i>3.1 General principle</a><ul>
+<li class="chapter" data-level="" data-path="random-forests.html"><a href="random-forests.html#instability-of-a-tree"><i class="fa fa-check"></i>3.1.1 Instability of a tree</a></li>
+<li class="chapter" data-level="" data-path="random-forests.html"><a href="random-forests.html#from-a-tree-to-an-ensemble-the-bagging"><i class="fa fa-check"></i>3.1.2 From a tree to an ensemble: the Bagging</a></li>
+</ul></li>
+<li><a href="random-forests.html#the-randomforest-package">3.3 The <code>randomForest</code> package</a></li>
+<li class="chapter" data-level="" data-path="random-forests.html"><a href="random-forests.html#parameters-setting-for-prediction"><i class="fa fa-check"></i>3.5 Parameters setting for prediction</a><ul>
+<li><a href="random-forests.html#the-number-of-trees-ntree">3.5.1 The number of trees: <code>ntree</code></a></li>
+<li><a href="random-forests.html#the-number-of-variables-chosen-at-each-node-mtry">3.5.2 The number of variables chosen at each node: <code>mtry</code></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="cart.html"><a href="cart.html#examples"><i class="fa fa-check"></i>3.6 Examples</a><ul>
+<li class="chapter" data-level="" data-path="cart.html"><a href="cart.html#predicting-ozone-concentration"><i class="fa fa-check"></i>3.6.1 Predicting ozone concentration</a></li>
+<li class="chapter" data-level="" data-path="cart.html"><a href="cart.html#analyzing-genomic-data"><i class="fa fa-check"></i>3.6.2 Analyzing genomic data</a></li>
+<li class="chapter" data-level="" data-path="random-forests.html"><a href="random-forests.html#analyzing-dust-pollution"><i class="fa fa-check"></i>3.6.3 Analyzing dust pollution</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="sélection-de-variables.html"><a href="sélection-de-variables.html"><i class="fa fa-check"></i>5 Sélection de variables</a><ul>
-<li class="chapter" data-level="" data-path="sélection-de-variables.html"><a href="sélection-de-variables.html#le-package-vsurf"><i class="fa fa-check"></i>5.4 Le package VSURF</a></li>
-<li class="chapter" data-level="" data-path="sélection-de-variables.html"><a href="sélection-de-variables.html#réglage-des-paramètres-pour-la-sélection"><i class="fa fa-check"></i>5.5 Réglage des paramètres pour la sélection</a></li>
-<li class="chapter" data-level="" data-path="arbres-cart.html"><a href="arbres-cart.html#exemples"><i class="fa fa-check"></i>5.6 Exemples</a><ul>
-<li class="chapter" data-level="" data-path="arbres-cart.html"><a href="arbres-cart.html#prédire-la-concentration-dozone"><i class="fa fa-check"></i>5.6.1 Prédire la concentration d’ozone</a></li>
-<li class="chapter" data-level="" data-path="arbres-cart.html"><a href="arbres-cart.html#analyser-des-données-génomiques"><i class="fa fa-check"></i>5.6.2 Analyser des données génomiques</a></li>
+<li class="chapter" data-level="" data-path="variable-importance.html"><a href="variable-importance.html"><i class="fa fa-check"></i>4 Variable importance</a><ul>
+<li class="chapter" data-level="" data-path="variable-importance.html"><a href="variable-importance.html#notions-of-importance"><i class="fa fa-check"></i>4.1 Notions of importance</a></li>
+<li class="chapter" data-level="" data-path="variable-importance.html"><a href="variable-importance.html#tree-diversity-and-importance"><i class="fa fa-check"></i>4.3 Tree diversity and importance</a></li>
+<li class="chapter" data-level="" data-path="cart.html"><a href="cart.html#examples"><i class="fa fa-check"></i>4.5 Examples</a><ul>
+<li class="chapter" data-level="" data-path="variable-importance.html"><a href="variable-importance.html#an-illustration-by-simulation-in-regression"><i class="fa fa-check"></i>4.5.1 An illustration by simulation in regression</a></li>
+<li class="chapter" data-level="" data-path="cart.html"><a href="cart.html#predicting-ozone-concentration"><i class="fa fa-check"></i>4.5.2 Predicting ozone concentration</a></li>
+<li class="chapter" data-level="" data-path="cart.html"><a href="cart.html#analyzing-genomic-data"><i class="fa fa-check"></i>4.5.3 Analyzing genomic data</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="variable-selection.html"><a href="variable-selection.html"><i class="fa fa-check"></i>5 Variable selection</a><ul>
+<li><a href="variable-selection.html#the-vsurf-package">5.4 The <code>VSURF</code> package</a></li>
+<li class="chapter" data-level="" data-path="variable-selection.html"><a href="variable-selection.html#parameters-setting-for-selection"><i class="fa fa-check"></i>5.5 Parameters setting for selection</a></li>
+<li class="chapter" data-level="" data-path="cart.html"><a href="cart.html#examples"><i class="fa fa-check"></i>5.6 Examples</a><ul>
+<li class="chapter" data-level="" data-path="cart.html"><a href="cart.html#predicting-ozone-concentration"><i class="fa fa-check"></i>5.6.1 Predicting ozone concentration</a></li>
+<li class="chapter" data-level="" data-path="cart.html"><a href="cart.html#analyzing-genomic-data"><i class="fa fa-check"></i>5.6.2 Analyzing genomic data</a></li>
 </ul></li>
 </ul></li>
 <li class="divider"></li>
@@ -194,7 +195,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Les Forêts aléatoires avec R</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Random Forests with R</a>
           </h1>
         </div>
 
@@ -204,10 +205,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="introduction" class="section level1">
 <h1>1 Introduction</h1>
-<div id="jeux-de-données" class="section level2">
-<h2>1.5 Jeux de données</h2>
-<div id="jeu-de-données-fil-rouge-détection-de-spams" class="section level3">
-<h3>1.5.1 Jeu de données fil rouge : détection de spams</h3>
+<div id="data-sets" class="section level2">
+<h2>1.5 Data sets</h2>
+<div id="running-example-spam-detection" class="section level3">
+<h3>1.5.1 Running example: spam detection</h3>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">data</span>(<span class="st">&quot;spam&quot;</span>, <span class="dt">package =</span> <span class="st">&quot;kernlab&quot;</span>)</a>
 <a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw">set.seed</span>(<span class="dv">9146301</span>)</a>
 <a class="sourceLine" id="cb1-3" data-line-number="3"><span class="kw">levels</span>(spam<span class="op">$</span>type) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;ok&quot;</span>, <span class="st">&quot;spam&quot;</span>)</a>
@@ -217,13 +218,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb1-7" data-line-number="7">spamApp &lt;-<span class="st"> </span>spam[indApp, ]</a>
 <a class="sourceLine" id="cb1-8" data-line-number="8">spamTest &lt;-<span class="st"> </span>spam[<span class="op">-</span>indApp, ]</a></code></pre></div>
 </div>
-<div id="pollution-à-lozone" class="section level3">
-<h3>1.5.2 Pollution à l’ozone</h3>
+<div id="ozone-pollution" class="section level3">
+<h3>1.5.2 Ozone pollution</h3>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">data</span>(<span class="st">&quot;Ozone&quot;</span>, <span class="dt">package =</span> <span class="st">&quot;mlbench&quot;</span>)</a></code></pre></div>
 </div>
-<div id="analyser-des-données-génomiques-pour-une-étude-vaccinale" class="section level3">
-<h3>1.5.3 Analyser des données génomiques pour une étude vaccinale</h3>
+<div id="genomic-data-for-a-vaccine-study" class="section level3">
+<h3>1.5.3 Genomic data for a vaccine study</h3>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">data</span>(<span class="st">&quot;vac18&quot;</span>, <span class="dt">package =</span> <span class="st">&quot;mixOmics&quot;</span>)</a></code></pre></div>
+</div>
+<div id="dust-pollution" class="section level3">
+<h3>1.5.4 Dust pollution</h3>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">data</span>(<span class="st">&quot;jus&quot;</span>, <span class="dt">package =</span> <span class="st">&quot;VSURF&quot;</span>)</a></code></pre></div>
 
 </div>
 </div>
@@ -234,7 +239,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
         </div>
       </div>
 <a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="arbres-cart.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="cart.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

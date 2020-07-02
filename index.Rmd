@@ -1,13 +1,13 @@
 ---
-title: "Les Forêts aléatoires avec R"
-subtitle: "*Le site du livre*"
+title: "Random Forests with R"
+subtitle: "*The book website*"
 author: "[Robin Genuer](https://robin.genuer.fr) et [Jean-Michel Poggi](https://www.math.u-psud.fr/~poggi/)"
 date: '`r Sys.Date()`'
 output:
   bookdown::gitbook:
     number_sections: FALSE
 site: bookdown::bookdown_site
-description: "Site du livre"
+description: "Book website"
 ---
 
 ```{r indexKnitrOpts, include=FALSE}
@@ -22,25 +22,24 @@ if (!knitr:::is_html_output()) {
 }
 ```
 
-# Préambule {-}
+# Preamble {-}
 
-Cette page contient l'ensemble des codes R inclus dans le livre "Les Forêts
-aléatoires avec R" de Robin Genuer et Jean-Michel Poggi, édité dans la
-collection Pratique de la statistique des Presses Universitaires de Rennes.
+This page contains all R code included in our book "Random Forests with R"
+by Robin Genuer and Jean-Michel Poggi.
 
-**Vous pouvez commander le livre [ici](http://www.pur-editions.fr/detail.php?idOuv=4792).**
+<!-- **You can order the book [here]().** -->
  
-La navigation est possible directement sur cette page à l'aide du menu à gauche,
-et les scripts R (un fichier R ou Rmd par chapitre) sont également
-téléchargeables [ici](https://github.com/robingenuer/LesForetsAleatoiresAvecR)
-ou grâce aux liens ci-dessous :
+You can navigate directly on this page using the left bar and R scripts
+(R or Rmd fils per chapter) can also be downloaded
+[here](https://github.com/robingenuer/RFwithR) or thanks to the following
+links:
 
 Chapitre 1 Introduction ([R](01_intro.R), [Rmd](01_intro.Rmd))
 
-Chapitre 2 Arbres CART ([R](02_cart.R), [Rmd](02_cart.Rmd))
+Chapitre 2 CART ([R](02_cart.R), [Rmd](02_cart.Rmd))
 
-Chapitre 3 Forêts aléatoires ([R](03_rf.R), [Rmd](03_rf.Rmd))
+Chapitre 3 Random Forests ([R](03_rf.R), [Rmd](03_rf.Rmd))
 
-Chapitre 4 Importance des variables ([R](04_imp.R), [Rmd](04_imp.Rmd))
+Chapitre 4 Variable importance ([R](04_imp.R), [Rmd](04_imp.Rmd))
 
-Chapitre 5 Sélection de variables ([R](05_vsurf.R), [Rmd](05_vsurf.Rmd))
+Chapitre 5 Variable selection ([R](05_vsurf.R), [Rmd](05_vsurf.Rmd))
