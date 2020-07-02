@@ -1,0 +1,46 @@
+---
+title: "Les Forêts aléatoires avec R"
+subtitle: "*Le site du livre*"
+author: "[Robin Genuer](https://robin.genuer.fr) et [Jean-Michel Poggi](https://www.math.u-psud.fr/~poggi/)"
+date: '`r Sys.Date()`'
+output:
+  bookdown::gitbook:
+    number_sections: FALSE
+site: bookdown::bookdown_site
+description: "Site du livre"
+---
+
+```{r indexKnitrOpts, include=FALSE}
+knitr::opts_chunk$set(tidy = TRUE,
+                      tidy.opts=list(arrow=TRUE),
+                      message = FALSE,
+                      warning = FALSE,
+                      eval = FALSE)
+if (!knitr:::is_html_output()) {
+  knitr::opts_chunk$set(prompt = TRUE, comment = "",
+                        tidy.opts=list(width.cutoff=50))
+}
+```
+
+# Préambule {-}
+
+Cette page contient l'ensemble des codes R inclus dans le livre "Les Forêts
+aléatoires avec R" de Robin Genuer et Jean-Michel Poggi, édité dans la
+collection Pratique de la statistique des Presses Universitaires de Rennes.
+
+**Vous pouvez commander le livre [ici](http://www.pur-editions.fr/detail.php?idOuv=4792).**
+ 
+La navigation est possible directement sur cette page à l'aide du menu à gauche,
+et les scripts R (un fichier R ou Rmd par chapitre) sont également
+téléchargeables [ici](https://github.com/robingenuer/LesForetsAleatoiresAvecR)
+ou grâce aux liens ci-dessous :
+
+Chapitre 1 Introduction ([R](01_intro.R), [Rmd](01_intro.Rmd))
+
+Chapitre 2 Arbres CART ([R](02_cart.R), [Rmd](02_cart.Rmd))
+
+Chapitre 3 Forêts aléatoires ([R](03_rf.R), [Rmd](03_rf.Rmd))
+
+Chapitre 4 Importance des variables ([R](04_imp.R), [Rmd](04_imp.Rmd))
+
+Chapitre 5 Sélection de variables ([R](05_vsurf.R), [Rmd](05_vsurf.Rmd))
