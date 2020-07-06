@@ -80,4 +80,3 @@ vacImp <- vacRFDefImp$importance[, nlevels(stimu) + 1]
 plot(sort(vacImp, decreasing = TRUE), type = "l", xlab = "Variables",
      ylab = "Importance des variables")
 ```
-

@@ -42,7 +42,7 @@ partialPlot(fried1RFimp, fried1Data, x.var = "X1", main = "X1")
 #' 
 #' ### 4.5.2 Predicting ozone concentration
 #' 
-## ----impOzoneLoad-----------
+## ----impOzoneLoad---------------------------
 library("randomForest")
 data("Ozone", package = "mlbench")
 OzRFDefImp <- randomForest(V4 ~ ., Ozone, na.action = na.omit,
@@ -56,17 +56,17 @@ varImpPlot(OzRFDefImp, type = 1, scale = FALSE,
 #' 
 #' ### 4.5.3 Analyzing genomic data
 #' 
-## ----impVac18load-----------
+## ----impVac18load---------------------------
 library(randomForest)
 data("vac18", package = "mixOmics")
 
 #' 
-## ----impVac18DataManage-----
+## ----impVac18DataManage---------------------
 geneExpr <- vac18$genes
 stimu <- vac18$stimulation
 
 #' 
-## ----impVac18RFDefImp-------
+## ----impVac18RFDefImp-----------------------
 vacRFDefImp <- randomForest(x = geneExpr, y = stimu, mtry = ncol(geneExpr)/3,
                             importance = TRUE)
 
@@ -80,4 +80,3 @@ vacImp <- vacRFDefImp$importance[, nlevels(stimu) + 1]
 plot(sort(vacImp, decreasing = TRUE), type = "l", xlab = "Variables",
      ylab = "Importance des variables")
 
-#' 

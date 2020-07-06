@@ -169,4 +169,3 @@ vacVSURFpara <- VSURF(x = geneExpr, y = stimu, parallel = TRUE, ncores = 3,
 ```{r vsurfVac18Res}
 summary(vacVSURFpara)
 ```
-

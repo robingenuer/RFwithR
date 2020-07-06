@@ -17,9 +17,9 @@ plot(treeMax)
 treeMax$cptable
 
 #' 
-#' ```{r cartplotCp, fig.cap="Errors estimated by cross-validation of the sequence of sub-trees pruned from
-#' the maximal tree, `spam` data."}
-#' plotcp(treeMax)
+## ----cartplotCp, fig.cap="Errors estimated by cross-validation of the sequence of sub-trees pruned from the maximal tree, `spam` data."----
+plotcp(treeMax)
+
 #' 
 ## ----cartTreeOpt, fig.width=8.5, fig.height=7, fig.cap="Optimal pruned tree, `spam` data."----
 cpOpt <- treeMax$cptable[ which.min(treeMax$cptable[, 4]), 1 ]
@@ -80,10 +80,9 @@ set.seed(727325)
 OzTreeMax <- rpart(V4 ~ ., data = Ozone, minsplit = 2, cp = 0)
 
 #' 
-#' ```{r cartOzoneTreePlotcp, fig.cap="Errors estimated by cross-validation of the sequence of sub-trees pruned from
-#' the maximal tree, `Ozone` data."}
-#' plotcp(OzTreeMax)
-#' ```
+## ----cartOzoneTreePlotcp, fig.cap="Errors estimated by cross-validation of the sequence of sub-trees pruned from the maximal tree, `Ozone` data."----
+plotcp(OzTreeMax)
+
 #' 
 ## ----cartOzoneTreeOpt, fig.cap="Optimal pruned tree, `Ozone` data."----
 OzIndcpOpt <- which.min(OzTreeMax$cptable[, 4])
@@ -130,4 +129,3 @@ VacTreeOpt <- prune(VacTreeMaxLoo, cp = VaccpOpt)
 plot(VacTreeOpt)
 text(VacTreeOpt, use.n = TRUE, xpd = TRUE)
 
-#' 

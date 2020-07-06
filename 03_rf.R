@@ -20,39 +20,39 @@ plot(treeBoot2)
 text(treeBoot2, xpd = TRUE)
 
 #' 
-## ----rfCompTreeBoot------------------------------
+## ----rfCompTreeBoot-----------------------
 mean(predict(treeBoot1, spamTest, type = "class") !=
      predict(treeBoot2, spamTest, type = "class"))
 
 #' 
 #' ### 3.1.2 From a tree to an ensemble: the Bagging
 #' 
-## ----rfLibrary-----------------------------------
+## ----rfLibrary----------------------------
 library(randomForest)
 
 #' 
-## ----rfBagging-----------------------------------
+## ----rfBagging----------------------------
 bagging <- randomForest(type ~ ., data = spamApp, mtry = ncol(spamApp) - 1)
 bagging
 
 #' 
-## ----rfBaggingErrors-----------------------------
+## ----rfBaggingErrors----------------------
 errTestBagging <- mean(predict(bagging, spamTest) != spamTest$type)
 errEmpBagging <- mean(predict(bagging, spamApp) != spamApp$type)
 
 #' 
 #' ## 3.3 The `randomForest` package
 #' 
-## ----rfRFDef-------------------------------------
+## ----rfRFDef------------------------------
 RFDef <- randomForest(type ~ ., data = spamApp)
 RFDef
 
 #' 
-## ----rfRFDefAlter--------------------------------
+## ----rfRFDefAlter-------------------------
 RFDef <- randomForest(spamApp[, -58], spamApp[, 58])
 
 #' 
-## ----rfRFRIErrorsPrint---------------------------
+## ----rfRFRIErrorsPrint--------------------
 errTestRFDef <- mean(predict(RFDef, spamTest) != spamTest$type)
 errEmpRFDef <- mean(predict(RFDef, spamApp) != spamApp$type)
 
@@ -65,36 +65,36 @@ errEmpRFDef <- mean(predict(RFDef, spamApp) != spamApp$type)
 plot(RFDef)
 
 #' 
-## ----rfRFDoTrace---------------------------------
+## ----rfRFDoTrace--------------------------
 RFDoTrace <- randomForest(type~., data=spamApp, ntree = 250, do.trace=25)
 
 #' 
 #' ### 3.5.2 The number of variables chosen at each node: `mtry`
 #' 
-## ----rfTuneMtryEcho------------------------------
+## ----rfTuneMtryEcho-----------------------
 nbvars <- 1:(ncol(spamApp) - 1)
 oobsMtry <- sapply(nbvars, function(nbv) {
   RF <- randomForest(type~., spamApp, ntree = 250, mtry = nbv)
   return(RF$err.rate[RF$ntree, "OOB"])})
 
 #' 
-## ----rf10runs------------------------------------
+## ----rf10runs-----------------------------
 mean(replicate(n = 25,
   randomForest(type ~ ., spamApp, ntree = 250)$err.rate[250, "OOB"]))
 
 #' 
-## ----rfBagStump----------------------------------
+## ----rfBagStump---------------------------
 bagStump <- randomForest(type~., spamApp, ntree = 100,
                          mtry = ncol(spamApp) - 1, maxnodes = 2)
 
 #' 
-## ----rfBagStumpRes-------------------------------
+## ----rfBagStumpRes------------------------
 bagStumpbestvar <- table(bagStump$forest$bestvar[1,])
 names(bagStumpbestvar) <- colnames(spamApp)[as.numeric(names(bagStumpbestvar))]
 sort(bagStumpbestvar, decreasing = TRUE)
 
 #' 
-## ----rfRFStump-----------------------------------
+## ----rfRFStump----------------------------
 RFStump <- randomForest(type~., spamApp, ntree = 100, maxnodes = 2)
 RFStumpbestvar <- table(RFStump$forest$bestvar[1,])
 names(RFStumpbestvar) <- colnames(spamApp)[as.numeric(names(RFStumpbestvar))]
@@ -105,12 +105,12 @@ sort(RFStumpbestvar, decreasing = TRUE)
 #' 
 #' ### 3.6.1 Predicting ozone concentration
 #' 
-## ----rfOzoneLoad---------------------------------
+## ----rfOzoneLoad--------------------------
 library("randomForest")
 data("Ozone", package = "mlbench")
 
 #' 
-## ----rfOzoneRFDef--------------------------------
+## ----rfOzoneRFDef-------------------------
 OzRFDef <- randomForest(V4 ~ ., Ozone, na.action = na.omit)
 
 #' 
@@ -123,7 +123,7 @@ plot(OzRFDef)
 plot(nbvars, oobsMtrys, type ="l", xlab = "mtry", ylab = "Erreur OOB")
 
 #' 
-## ----rfOzoneRFDefStrat---------------------------
+## ----rfOzoneRFDefStrat--------------------
 bins <- c(0, 10, 20, 40)
 V4bin <- cut(Ozone$V4, bins, include.lowest = TRUE, right = FALSE)
 OzoneBin <- data.frame(Ozone, V4bin)
@@ -134,12 +134,12 @@ OzRFDefStrat
 #' 
 #' ### 3.6.2 Analyzing genomic data
 #' 
-## ----rfVac18Load---------------------------------
+## ----rfVac18Load--------------------------
 library(randomForest)
 data("vac18", package = "mixOmics")
 
 #' 
-## ----rfVac18DataManage---------------------------
+## ----rfVac18DataManage--------------------
 geneExpr <- vac18$genes
 stimu <- vac18$stimulation
 
@@ -150,7 +150,7 @@ VacRFpsur3
 plot(VacRFpsur3)
 
 #' 
-## ----rfVac18RFCompMtry---------------------------
+## ----rfVac18RFCompMtry--------------------
 nFor <- 25
 VacOOBsqrtp <- replicate(nFor,
   randomForest(geneExpr, stimu)$err.rate[500, "OOB"])
@@ -160,13 +160,13 @@ VacOOBpsur3 <- replicate(nFor,
 #' 
 #' ### 3.6.3 Analyzing dust pollution
 #' 
-## ----rfPM10load----------------------------------
+## ----rfPM10load---------------------------
 library(randomForest)
 data("jus", package = "VSURF")
 jusComp <- na.omit(jus)
 
 #' 
-## ----rfPM10jusRF---------------------------------
+## ----rfPM10jusRF--------------------------
 jusRF <- randomForest(PM10 ~ ., data = jusComp)
 
 #' 
@@ -174,4 +174,3 @@ jusRF <- randomForest(PM10 ~ ., data = jusComp)
 partialPlot(jusRF, pred.data = jusComp, x.var = "NO",
             main = "Effet marginal - NO")
 
-#' 

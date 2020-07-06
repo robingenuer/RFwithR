@@ -2,17 +2,17 @@
 #' 
 #' ## 5.4 The `VSURF` package
 #' 
-## ----vsurfLoad-----------------------------------
+## ----vsurfLoad---------------------------------
 library(VSURF)
 data("toys")
 
 #' 
-## ----vsurfToysglob-------------------------------
+## ----vsurfToysglob-----------------------------
 set.seed(3101318)
 vsurfToys <- VSURF(toys$x, toys$y, mtry = 100)
 
 #' 
-## ----vsurfToysSumm-------------------------------
+## ----vsurfToysSumm-----------------------------
 summary(vsurfToys)
 
 #' 
@@ -20,12 +20,12 @@ summary(vsurfToys)
 plot(vsurfToys)
 
 #' 
-## ----vsurfThres----------------------------------
+## ----vsurfThres--------------------------------
 set.seed(3101318)
 vsurfThresToys <- VSURF_thres(toys$x, toys$y, mtry = 100)
 
 #' 
-## ----vsurfThresVarsel----------------------------
+## ----vsurfThresVarsel--------------------------
 vsurfThresToys$varselect.thres
 
 #' 
@@ -33,23 +33,23 @@ vsurfThresToys$varselect.thres
 plot(vsurfToys, step = "thres", imp.mean = FALSE, ylim = c(0, 2e-4))
 
 #' 
-## ----vsurfInterp---------------------------------
+## ----vsurfInterp-------------------------------
 vsurfInterpToys <- VSURF_interp(toys$x, toys$y, vars = vsurfThresToys$varselect.thres)
 
 #' 
-## ----vsurfInterpRes------------------------------
+## ----vsurfInterpRes----------------------------
 vsurfInterpToys$varselect.interp
 
 #' 
-## ----vsurfPred-----------------------------------
+## ----vsurfPred---------------------------------
 vsurfPredToys <- VSURF_pred(toys$x, toys$y, err.interp = vsurfInterpToys$err.interp, varselect.interp = vsurfInterpToys$varselect.interp)
 
 #' 
-## ----vsurfPredRes--------------------------------
+## ----vsurfPredRes------------------------------
 vsurfPredToys$varselect.pred
 
 #' 
-## ----vsurfSpamCode-------------------------------
+## ----vsurfSpamCode-----------------------------
 set.seed(923321, kind = "L'Ecuyer-CMRG")
 vsurfSpam <- VSURF(type~., spamApp, parallel = TRUE, ncores = 3,
                    clusterType = "FORK")
@@ -62,41 +62,41 @@ colnames(spamApp[vsurfSpam$varselect.interp])
 colnames(spamApp[vsurfSpam$varselect.pred])
 
 #' 
-## ----vsurfSpamContinued--------------------------
+## ----vsurfSpamContinued------------------------
 vsurfSpam$mean.jump
 
 #' 
-## ----vsurfSpamTuneCode---------------------------
+## ----vsurfSpamTuneCode-------------------------
 set.seed(945834)
 vsurfSpamPred <- VSURF_pred(type~., spamApp, nmj = 15,
   err.interp = vsurfSpam$err.interp,
   varselect.interp = vsurfSpam$varselect.interp)
 
 #' 
-## ----vsurfSpamTuneRes----------------------------
+## ----vsurfSpamTuneRes--------------------------
 colnames(spamApp[vsurfSpamPred$varselect.pred])
 
 #' 
 #' ## 5.5 Parameters setting for selection
 #' 
-## ----vsurfStump----------------------------------
+## ----vsurfStump--------------------------------
 vsurfToysStump <- VSURF(toys$x, toys$y, mtry = 100, maxnodes = 2)
 summary(vsurfToysStump)
 vsurfToysStump$varselect.interp
 vsurfToysStump$varselect.pred
 
 #' 
-## ----vsurfThresTuned-----------------------------
+## ----vsurfThresTuned---------------------------
 vsurfThresToysTuned <- tune(vsurfThresToys, nmin = 3)
 vsurfThresToysTuned$varselect.thres
 
 #' 
-## ----vsurfInterTuned-----------------------------
+## ----vsurfInterTuned---------------------------
 vsurfInterpToysTuned <- tune(vsurfInterpToys, nsd = 5)
 vsurfInterpToysTuned$varselect.interp
 
 #' 
-## ----vsurfPredTuned------------------------------
+## ----vsurfPredTuned----------------------------
 vsurfPredToysTuned <- VSURF_pred(toys$x, toys$y,
     err.interp = vsurfInterpToys$err.interp, 
     varselect.interp = vsurfInterpToys$varselect.interp,
@@ -108,12 +108,12 @@ vsurfPredToysTuned$varselect.pred
 #' 
 #' ### 5.6.1 Predicting ozone concentration
 #' 
-## ----vsurfOzLoad---------------------------------
+## ----vsurfOzLoad-------------------------------
 library(VSURF)
 data("Ozone", package = "mlbench")
 
 #' 
-## ----vsurfOzCode---------------------------------
+## ----vsurfOzCode-------------------------------
 set.seed(303601)
 OzVSURF <- VSURF(V4 ~ ., data = Ozone, na.action = na.omit)
 
@@ -123,29 +123,29 @@ summary(OzVSURF)
 plot(OzVSURF, var.names = TRUE)
 
 #' 
-## ----vsurfOzVarThres-----------------------------
+## ----vsurfOzVarThres---------------------------
 number <- c(1:3, 5:13)
 number[OzVSURF$varselect.thres]
 
 #' 
-## ----vsurfOzVarInterp----------------------------
+## ----vsurfOzVarInterp--------------------------
 number[OzVSURF$varselect.interp]
 
 #' 
-## ----vsurfOzVarPred------------------------------
+## ----vsurfOzVarPred----------------------------
 number[OzVSURF$varselect.pred]
 
 #' 
 #' ### 5.6.2 Analyzing genomic data
 #' 
-## ----vsurfVac18Load------------------------------
+## ----vsurfVac18Load----------------------------
 library(VSURF)
 data("vac18", package = "mixOmics")
 geneExpr <- vac18$genes
 stimu <- vac18$stimulation
 
 #' 
-## ----vsurfVac18seqCode---------------------------
+## ----vsurfVac18seqCode-------------------------
 set.seed(481933)
 vacVSURF <- VSURF(x = geneExpr, y = stimu)
 
@@ -155,18 +155,17 @@ summary(vacVSURF)
 plot(vacVSURF)
 
 #' 
-## ----vsurfVac18probeSelPred----------------------
+## ----vsurfVac18probeSelPred--------------------
 probeSelPred <- colnames(geneExpr)[vacVSURF$varselect.pred]
 probeSelPred
 
 #' 
-## ----vsurfVac18Code------------------------------
+## ----vsurfVac18Code----------------------------
 set.seed(627408, kind = "L'Ecuyer-CMRG")
 vacVSURFpara <- VSURF(x = geneExpr, y = stimu, parallel = TRUE, ncores = 3,
                   clusterType = "FORK")
 
 #' 
-## ----vsurfVac18Res-------------------------------
+## ----vsurfVac18Res-----------------------------
 summary(vacVSURFpara)
 
-#' 

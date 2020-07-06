@@ -174,4 +174,3 @@ jusRF <- randomForest(PM10 ~ ., data = jusComp)
 partialPlot(jusRF, pred.data = jusComp, x.var = "NO",
             main = "Effet marginal - NO")
 ```
-
