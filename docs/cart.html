@@ -24,14 +24,14 @@
 <meta name="author" content="Robin Genuer et Jean-Michel Poggi" />
 
 
-<meta name="date" content="2020-07-02" />
+<meta name="date" content="2020-07-06" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="introduction.html"/>
+<link rel="prev" href="introduction-to-random-forests-with-r.html"/>
 <link rel="next" href="random-forests.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -131,12 +131,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preamble</a></li>
-<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i>1 Introduction</a><ul>
-<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#data-sets"><i class="fa fa-check"></i>1.5 Data sets</a><ul>
-<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#running-example-spam-detection"><i class="fa fa-check"></i>1.5.1 Running example: spam detection</a></li>
-<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#ozone-pollution"><i class="fa fa-check"></i>1.5.2 Ozone pollution</a></li>
-<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#genomic-data-for-a-vaccine-study"><i class="fa fa-check"></i>1.5.3 Genomic data for a vaccine study</a></li>
-<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#dust-pollution"><i class="fa fa-check"></i>1.5.4 Dust pollution</a></li>
+<li class="chapter" data-level="" data-path="introduction-to-random-forests-with-r.html"><a href="introduction-to-random-forests-with-r.html"><i class="fa fa-check"></i>1 Introduction to Random Forests with R</a><ul>
+<li class="chapter" data-level="" data-path="introduction-to-random-forests-with-r.html"><a href="introduction-to-random-forests-with-r.html#data-sets"><i class="fa fa-check"></i>1.5 Data sets</a><ul>
+<li class="chapter" data-level="" data-path="introduction-to-random-forests-with-r.html"><a href="introduction-to-random-forests-with-r.html#running-example-spam-detection"><i class="fa fa-check"></i>1.5.1 Running example: spam detection</a></li>
+<li class="chapter" data-level="" data-path="introduction-to-random-forests-with-r.html"><a href="introduction-to-random-forests-with-r.html#ozone-pollution"><i class="fa fa-check"></i>1.5.2 Ozone pollution</a></li>
+<li class="chapter" data-level="" data-path="introduction-to-random-forests-with-r.html"><a href="introduction-to-random-forests-with-r.html#genomic-data-for-a-vaccine-study"><i class="fa fa-check"></i>1.5.3 Genomic data for a vaccine study</a></li>
+<li class="chapter" data-level="" data-path="introduction-to-random-forests-with-r.html"><a href="introduction-to-random-forests-with-r.html#dust-pollution"><i class="fa fa-check"></i>1.5.4 Dust pollution</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="cart.html"><a href="cart.html"><i class="fa fa-check"></i>2 CART</a><ul>
@@ -216,76 +216,77 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb6-2" data-line-number="2">treeMax &lt;-<span class="st"> </span><span class="kw">rpart</span>(type <span class="op">~</span><span class="st"> </span>., <span class="dt">data =</span> spamApp, <span class="dt">minsplit =</span> <span class="dv">2</span>, <span class="dt">cp =</span> <span class="dv">0</span>)</a>
 <a class="sourceLine" id="cb6-3" data-line-number="3"><span class="kw">plot</span>(treeMax)</a>
 <a class="sourceLine" id="cb6-4" data-line-number="4">treeMax<span class="op">$</span>cptable</a></code></pre></div>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw">plotcp</span>(treeMax)</a></code></pre></div>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1">cpOpt &lt;-<span class="st"> </span>treeMax<span class="op">$</span>cptable[ <span class="kw">which.min</span>(treeMax<span class="op">$</span>cptable[, <span class="dv">4</span>]), <span class="dv">1</span> ]</a>
-<a class="sourceLine" id="cb8-2" data-line-number="2">treeOpt &lt;-<span class="st"> </span><span class="kw">prune</span>(treeMax, <span class="dt">cp =</span> cpOpt)</a>
-<a class="sourceLine" id="cb8-3" data-line-number="3"><span class="kw">plot</span>(treeOpt)</a>
-<a class="sourceLine" id="cb8-4" data-line-number="4"><span class="kw">text</span>(treeOpt, <span class="dt">xpd =</span> <span class="ot">TRUE</span>, <span class="dt">cex =</span> <span class="fl">0.8</span>)</a></code></pre></div>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">thres1SE &lt;-<span class="st"> </span><span class="kw">sum</span>(treeMax<span class="op">$</span>cptable[ <span class="kw">which.min</span>(treeMax<span class="op">$</span>cptable[, <span class="dv">4</span>]), <span class="dv">4</span><span class="op">:</span><span class="dv">5</span>])</a>
-<a class="sourceLine" id="cb9-2" data-line-number="2">cp1SE &lt;-<span class="st"> </span>treeMax<span class="op">$</span>cptable[ <span class="kw">min</span>(<span class="kw">which</span>(treeMax<span class="op">$</span>cptable[, <span class="dv">4</span>] <span class="op">&lt;=</span><span class="st"> </span>thres1SE)), <span class="dv">1</span>]</a>
-<a class="sourceLine" id="cb9-3" data-line-number="3">tree1SE &lt;-<span class="st"> </span><span class="kw">prune</span>(treeMax, <span class="dt">cp =</span> cp1SE)</a>
-<a class="sourceLine" id="cb9-4" data-line-number="4"><span class="kw">plot</span>(tree1SE)</a>
-<a class="sourceLine" id="cb9-5" data-line-number="5"><span class="kw">text</span>(tree1SE, <span class="dt">xpd =</span> <span class="ot">TRUE</span>, <span class="dt">cex =</span> <span class="fl">0.8</span>)</a></code></pre></div>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1">errTestTreeMax &lt;-<span class="st"> </span><span class="kw">mean</span>(<span class="kw">predict</span>(treeMax, spamTest, <span class="dt">type =</span> <span class="st">&quot;class&quot;</span>) <span class="op">!=</span></a>
-<a class="sourceLine" id="cb10-2" data-line-number="2"><span class="st">                         </span>spamTest<span class="op">$</span>type)</a>
-<a class="sourceLine" id="cb10-3" data-line-number="3">errEmpTreeMax &lt;-<span class="st"> </span><span class="kw">mean</span>(<span class="kw">predict</span>(treeMax, spamApp, <span class="dt">type =</span> <span class="st">&quot;class&quot;</span>) <span class="op">!=</span></a>
-<a class="sourceLine" id="cb10-4" data-line-number="4"><span class="st">                        </span>spamApp<span class="op">$</span>type)</a></code></pre></div>
+<p>``<code>{r cartplotCp, fig.cap=&quot;Errors estimated by cross-validation of the sequence of sub-trees pruned from the maximal tree,</code>spam` data.&quot;}
+plotcp(treeMax)</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">cpOpt &lt;-<span class="st"> </span>treeMax<span class="op">$</span>cptable[ <span class="kw">which.min</span>(treeMax<span class="op">$</span>cptable[, <span class="dv">4</span>]), <span class="dv">1</span> ]</a>
+<a class="sourceLine" id="cb7-2" data-line-number="2">treeOpt &lt;-<span class="st"> </span><span class="kw">prune</span>(treeMax, <span class="dt">cp =</span> cpOpt)</a>
+<a class="sourceLine" id="cb7-3" data-line-number="3"><span class="kw">plot</span>(treeOpt)</a>
+<a class="sourceLine" id="cb7-4" data-line-number="4"><span class="kw">text</span>(treeOpt, <span class="dt">xpd =</span> <span class="ot">TRUE</span>, <span class="dt">cex =</span> <span class="fl">0.8</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1">thres1SE &lt;-<span class="st"> </span><span class="kw">sum</span>(treeMax<span class="op">$</span>cptable[ <span class="kw">which.min</span>(treeMax<span class="op">$</span>cptable[, <span class="dv">4</span>]), <span class="dv">4</span><span class="op">:</span><span class="dv">5</span>])</a>
+<a class="sourceLine" id="cb8-2" data-line-number="2">cp1SE &lt;-<span class="st"> </span>treeMax<span class="op">$</span>cptable[ <span class="kw">min</span>(<span class="kw">which</span>(treeMax<span class="op">$</span>cptable[, <span class="dv">4</span>] <span class="op">&lt;=</span><span class="st"> </span>thres1SE)), <span class="dv">1</span>]</a>
+<a class="sourceLine" id="cb8-3" data-line-number="3">tree1SE &lt;-<span class="st"> </span><span class="kw">prune</span>(treeMax, <span class="dt">cp =</span> cp1SE)</a>
+<a class="sourceLine" id="cb8-4" data-line-number="4"><span class="kw">plot</span>(tree1SE)</a>
+<a class="sourceLine" id="cb8-5" data-line-number="5"><span class="kw">text</span>(tree1SE, <span class="dt">xpd =</span> <span class="ot">TRUE</span>, <span class="dt">cex =</span> <span class="fl">0.8</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">errTestTreeMax &lt;-<span class="st"> </span><span class="kw">mean</span>(<span class="kw">predict</span>(treeMax, spamTest, <span class="dt">type =</span> <span class="st">&quot;class&quot;</span>) <span class="op">!=</span></a>
+<a class="sourceLine" id="cb9-2" data-line-number="2"><span class="st">                         </span>spamTest<span class="op">$</span>type)</a>
+<a class="sourceLine" id="cb9-3" data-line-number="3">errEmpTreeMax &lt;-<span class="st"> </span><span class="kw">mean</span>(<span class="kw">predict</span>(treeMax, spamApp, <span class="dt">type =</span> <span class="st">&quot;class&quot;</span>) <span class="op">!=</span></a>
+<a class="sourceLine" id="cb9-4" data-line-number="4"><span class="st">                        </span>spamApp<span class="op">$</span>type)</a></code></pre></div>
 </div>
 <div id="competing-and-surrogate-splits" class="section level2">
 <h2>2.5 Competing and surrogate splits</h2>
 <div id="surrogate-splits" class="section level3">
 <h3>2.5.2 Surrogate splits</h3>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1">treeStump &lt;-<span class="st"> </span><span class="kw">rpart</span>(type <span class="op">~</span><span class="st"> </span>., <span class="dt">data =</span> spamApp, <span class="dt">maxdepth =</span> <span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb11-2" data-line-number="2"><span class="kw">summary</span>(treeStump)</a></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1">treeStump &lt;-<span class="st"> </span><span class="kw">rpart</span>(type <span class="op">~</span><span class="st"> </span>., <span class="dt">data =</span> spamApp, <span class="dt">maxdepth =</span> <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb10-2" data-line-number="2"><span class="kw">summary</span>(treeStump)</a></code></pre></div>
 </div>
 <div id="interpretability" class="section level3">
 <h3>2.5.3 Interpretability</h3>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1"><span class="kw">par</span>(<span class="dt">mar=</span><span class="kw">c</span>(<span class="dv">7</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">1</span>) <span class="op">+</span><span class="st"> </span><span class="fl">0.1</span>)</a>
-<a class="sourceLine" id="cb12-2" data-line-number="2"><span class="kw">barplot</span>(treeMax<span class="op">$</span>variable.importance, <span class="dt">las =</span> <span class="dv">2</span>, <span class="dt">cex.names =</span> <span class="fl">0.8</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="kw">par</span>(<span class="dt">mar=</span><span class="kw">c</span>(<span class="dv">7</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">1</span>) <span class="op">+</span><span class="st"> </span><span class="fl">0.1</span>)</a>
+<a class="sourceLine" id="cb11-2" data-line-number="2"><span class="kw">barplot</span>(treeMax<span class="op">$</span>variable.importance, <span class="dt">las =</span> <span class="dv">2</span>, <span class="dt">cex.names =</span> <span class="fl">0.8</span>)</a></code></pre></div>
 </div>
 </div>
 <div id="examples" class="section level2">
 <h2>2.6 Examples</h2>
 <div id="predicting-ozone-concentration" class="section level3">
 <h3>2.6.1 Predicting ozone concentration</h3>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="kw">library</span>(<span class="st">&quot;rpart&quot;</span>)</a>
-<a class="sourceLine" id="cb13-2" data-line-number="2"><span class="kw">data</span>(<span class="st">&quot;Ozone&quot;</span>, <span class="dt">package =</span> <span class="st">&quot;mlbench&quot;</span>)</a></code></pre></div>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1">OzTreeDef &lt;-<span class="st"> </span><span class="kw">rpart</span>(V4 <span class="op">~</span><span class="st"> </span>., <span class="dt">data =</span> Ozone)</a>
-<a class="sourceLine" id="cb14-2" data-line-number="2"><span class="kw">print</span>(OzTreeDef, <span class="dt">digits =</span> <span class="dv">3</span>)</a>
-<a class="sourceLine" id="cb14-3" data-line-number="3"><span class="kw">plot</span>(OzTreeDef)</a>
-<a class="sourceLine" id="cb14-4" data-line-number="4"><span class="kw">text</span>(OzTreeDef, <span class="dt">xpd =</span> <span class="ot">TRUE</span>, <span class="dt">cex =</span> <span class="fl">0.9</span>)</a></code></pre></div>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1"><span class="kw">set.seed</span>(<span class="dv">727325</span>)</a>
-<a class="sourceLine" id="cb15-2" data-line-number="2">OzTreeMax &lt;-<span class="st"> </span><span class="kw">rpart</span>(V4 <span class="op">~</span><span class="st"> </span>., <span class="dt">data =</span> Ozone, <span class="dt">minsplit =</span> <span class="dv">2</span>, <span class="dt">cp =</span> <span class="dv">0</span>)</a></code></pre></div>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1"><span class="kw">plotcp</span>(OzTreeMax)</a></code></pre></div>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1">OzIndcpOpt &lt;-<span class="st"> </span><span class="kw">which.min</span>(OzTreeMax<span class="op">$</span>cptable[, <span class="dv">4</span>])</a>
-<a class="sourceLine" id="cb17-2" data-line-number="2">OzcpOpt &lt;-<span class="st"> </span>OzTreeMax<span class="op">$</span>cptable[OzIndcpOpt, <span class="dv">1</span>]</a>
-<a class="sourceLine" id="cb17-3" data-line-number="3">OzTreeOpt &lt;-<span class="st"> </span><span class="kw">prune</span>(OzTreeMax, <span class="dt">cp =</span> OzcpOpt)</a>
-<a class="sourceLine" id="cb17-4" data-line-number="4"><span class="kw">plot</span>(OzTreeOpt)</a>
-<a class="sourceLine" id="cb17-5" data-line-number="5"><span class="kw">text</span>(OzTreeOpt, <span class="dt">xpd =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1"><span class="kw">library</span>(<span class="st">&quot;rpart&quot;</span>)</a>
+<a class="sourceLine" id="cb12-2" data-line-number="2"><span class="kw">data</span>(<span class="st">&quot;Ozone&quot;</span>, <span class="dt">package =</span> <span class="st">&quot;mlbench&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1">OzTreeDef &lt;-<span class="st"> </span><span class="kw">rpart</span>(V4 <span class="op">~</span><span class="st"> </span>., <span class="dt">data =</span> Ozone)</a>
+<a class="sourceLine" id="cb13-2" data-line-number="2"><span class="kw">print</span>(OzTreeDef, <span class="dt">digits =</span> <span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb13-3" data-line-number="3"><span class="kw">plot</span>(OzTreeDef)</a>
+<a class="sourceLine" id="cb13-4" data-line-number="4"><span class="kw">text</span>(OzTreeDef, <span class="dt">xpd =</span> <span class="ot">TRUE</span>, <span class="dt">cex =</span> <span class="fl">0.9</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1"><span class="kw">set.seed</span>(<span class="dv">727325</span>)</a>
+<a class="sourceLine" id="cb14-2" data-line-number="2">OzTreeMax &lt;-<span class="st"> </span><span class="kw">rpart</span>(V4 <span class="op">~</span><span class="st"> </span>., <span class="dt">data =</span> Ozone, <span class="dt">minsplit =</span> <span class="dv">2</span>, <span class="dt">cp =</span> <span class="dv">0</span>)</a></code></pre></div>
+<p><code>{r cartOzoneTreePlotcp, fig.cap=&quot;Errors estimated by cross-validation of the sequence of sub-trees pruned from the maximal tree, `Ozone` data.&quot;} plotcp(OzTreeMax)</code></p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1">OzIndcpOpt &lt;-<span class="st"> </span><span class="kw">which.min</span>(OzTreeMax<span class="op">$</span>cptable[, <span class="dv">4</span>])</a>
+<a class="sourceLine" id="cb15-2" data-line-number="2">OzcpOpt &lt;-<span class="st"> </span>OzTreeMax<span class="op">$</span>cptable[OzIndcpOpt, <span class="dv">1</span>]</a>
+<a class="sourceLine" id="cb15-3" data-line-number="3">OzTreeOpt &lt;-<span class="st"> </span><span class="kw">prune</span>(OzTreeMax, <span class="dt">cp =</span> OzcpOpt)</a>
+<a class="sourceLine" id="cb15-4" data-line-number="4"><span class="kw">plot</span>(OzTreeOpt)</a>
+<a class="sourceLine" id="cb15-5" data-line-number="5"><span class="kw">text</span>(OzTreeOpt, <span class="dt">xpd =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 </div>
 <div id="analyzing-genomic-data" class="section level3">
 <h3>2.6.2 Analyzing genomic data</h3>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1"><span class="kw">library</span>(rpart)</a>
-<a class="sourceLine" id="cb18-2" data-line-number="2"><span class="kw">data</span>(<span class="st">&quot;vac18&quot;</span>, <span class="dt">package =</span> <span class="st">&quot;mixOmics&quot;</span>)</a>
-<a class="sourceLine" id="cb18-3" data-line-number="3">VAC18 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(vac18<span class="op">$</span>genes, <span class="st">&quot;stimu&quot;</span> =<span class="st"> </span>vac18<span class="op">$</span>stimulation)</a></code></pre></div>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1">VacTreeDef &lt;-<span class="st"> </span><span class="kw">rpart</span>(stimu <span class="op">~</span><span class="st"> </span>., <span class="dt">data =</span> VAC18)</a>
-<a class="sourceLine" id="cb19-2" data-line-number="2"><span class="kw">print</span>(VacTreeDef)</a>
-<a class="sourceLine" id="cb19-3" data-line-number="3"><span class="kw">plot</span>(VacTreeDef)</a>
-<a class="sourceLine" id="cb19-4" data-line-number="4"><span class="kw">text</span>(VacTreeDef, <span class="dt">use.n =</span> <span class="ot">TRUE</span>, <span class="dt">xpd =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" data-line-number="1"><span class="kw">set.seed</span>(<span class="dv">788182</span>)</a>
-<a class="sourceLine" id="cb20-2" data-line-number="2">VacTreeMax &lt;-<span class="st"> </span><span class="kw">rpart</span>(stimu <span class="op">~</span><span class="st"> </span>., <span class="dt">data =</span> VAC18, <span class="dt">minsplit =</span> <span class="dv">2</span>, <span class="dt">cp =</span> <span class="dv">0</span>)</a>
-<a class="sourceLine" id="cb20-3" data-line-number="3"><span class="kw">plot</span>(VacTreeMax)</a>
-<a class="sourceLine" id="cb20-4" data-line-number="4"><span class="kw">text</span>(VacTreeMax, <span class="dt">use.n =</span> <span class="ot">TRUE</span>, <span class="dt">xpd =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1"><span class="kw">set.seed</span>(<span class="dv">413745</span>)</a>
-<a class="sourceLine" id="cb21-2" data-line-number="2">VacTreeMaxLoo &lt;-<span class="st"> </span><span class="kw">rpart</span>(stimu <span class="op">~</span><span class="st"> </span>., <span class="dt">data =</span> VAC18, <span class="dt">minsplit =</span> <span class="dv">2</span>, <span class="dt">cp =</span> <span class="dv">0</span>, <span class="dt">xval =</span> <span class="kw">nrow</span>(VAC18))</a></code></pre></div>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" data-line-number="1"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</a>
-<a class="sourceLine" id="cb22-2" data-line-number="2"><span class="kw">plotcp</span>(VacTreeMax)</a>
-<a class="sourceLine" id="cb22-3" data-line-number="3"><span class="kw">plotcp</span>(VacTreeMaxLoo)</a></code></pre></div>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" data-line-number="1">VacIndcpOpt &lt;-<span class="st"> </span><span class="kw">which.min</span>(VacTreeMaxLoo<span class="op">$</span>cptable[, <span class="dv">4</span>])</a>
-<a class="sourceLine" id="cb23-2" data-line-number="2">VaccpOpt &lt;-<span class="st"> </span>VacTreeMaxLoo<span class="op">$</span>cptable[VacIndcpOpt, <span class="dv">1</span>]</a>
-<a class="sourceLine" id="cb23-3" data-line-number="3">VacTreeOpt &lt;-<span class="st"> </span><span class="kw">prune</span>(VacTreeMaxLoo, <span class="dt">cp =</span> VaccpOpt)</a>
-<a class="sourceLine" id="cb23-4" data-line-number="4"><span class="kw">plot</span>(VacTreeOpt)</a>
-<a class="sourceLine" id="cb23-5" data-line-number="5"><span class="kw">text</span>(VacTreeOpt, <span class="dt">use.n =</span> <span class="ot">TRUE</span>, <span class="dt">xpd =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1"><span class="kw">library</span>(rpart)</a>
+<a class="sourceLine" id="cb16-2" data-line-number="2"><span class="kw">data</span>(<span class="st">&quot;vac18&quot;</span>, <span class="dt">package =</span> <span class="st">&quot;mixOmics&quot;</span>)</a>
+<a class="sourceLine" id="cb16-3" data-line-number="3">VAC18 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(vac18<span class="op">$</span>genes, <span class="st">&quot;stimu&quot;</span> =<span class="st"> </span>vac18<span class="op">$</span>stimulation)</a></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1">VacTreeDef &lt;-<span class="st"> </span><span class="kw">rpart</span>(stimu <span class="op">~</span><span class="st"> </span>., <span class="dt">data =</span> VAC18)</a>
+<a class="sourceLine" id="cb17-2" data-line-number="2"><span class="kw">print</span>(VacTreeDef)</a>
+<a class="sourceLine" id="cb17-3" data-line-number="3"><span class="kw">plot</span>(VacTreeDef)</a>
+<a class="sourceLine" id="cb17-4" data-line-number="4"><span class="kw">text</span>(VacTreeDef, <span class="dt">use.n =</span> <span class="ot">TRUE</span>, <span class="dt">xpd =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1"><span class="kw">set.seed</span>(<span class="dv">788182</span>)</a>
+<a class="sourceLine" id="cb18-2" data-line-number="2">VacTreeMax &lt;-<span class="st"> </span><span class="kw">rpart</span>(stimu <span class="op">~</span><span class="st"> </span>., <span class="dt">data =</span> VAC18, <span class="dt">minsplit =</span> <span class="dv">2</span>, <span class="dt">cp =</span> <span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb18-3" data-line-number="3"><span class="kw">plot</span>(VacTreeMax)</a>
+<a class="sourceLine" id="cb18-4" data-line-number="4"><span class="kw">text</span>(VacTreeMax, <span class="dt">use.n =</span> <span class="ot">TRUE</span>, <span class="dt">xpd =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1"><span class="kw">set.seed</span>(<span class="dv">413745</span>)</a>
+<a class="sourceLine" id="cb19-2" data-line-number="2">VacTreeMaxLoo &lt;-<span class="st"> </span><span class="kw">rpart</span>(stimu <span class="op">~</span><span class="st"> </span>., <span class="dt">data =</span> VAC18, <span class="dt">minsplit =</span> <span class="dv">2</span>, <span class="dt">cp =</span> <span class="dv">0</span>, <span class="dt">xval =</span> <span class="kw">nrow</span>(VAC18))</a>
+<a class="sourceLine" id="cb19-3" data-line-number="3"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</a>
+<a class="sourceLine" id="cb19-4" data-line-number="4"><span class="kw">plotcp</span>(VacTreeMax)</a>
+<a class="sourceLine" id="cb19-5" data-line-number="5"><span class="kw">plotcp</span>(VacTreeMaxLoo)</a></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" data-line-number="1">VacIndcpOpt &lt;-<span class="st"> </span><span class="kw">which.min</span>(VacTreeMaxLoo<span class="op">$</span>cptable[, <span class="dv">4</span>])</a>
+<a class="sourceLine" id="cb20-2" data-line-number="2">VaccpOpt &lt;-<span class="st"> </span>VacTreeMaxLoo<span class="op">$</span>cptable[VacIndcpOpt, <span class="dv">1</span>]</a>
+<a class="sourceLine" id="cb20-3" data-line-number="3">VacTreeOpt &lt;-<span class="st"> </span><span class="kw">prune</span>(VacTreeMaxLoo, <span class="dt">cp =</span> VaccpOpt)</a>
+<a class="sourceLine" id="cb20-4" data-line-number="4"><span class="kw">plot</span>(VacTreeOpt)</a>
+<a class="sourceLine" id="cb20-5" data-line-number="5"><span class="kw">text</span>(VacTreeOpt, <span class="dt">use.n =</span> <span class="ot">TRUE</span>, <span class="dt">xpd =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 
 </div>
 </div>
@@ -295,7 +296,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="introduction.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="introduction-to-random-forests-with-r.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="random-forests.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>

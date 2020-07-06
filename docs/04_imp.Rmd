@@ -2,7 +2,7 @@
 
 ## 4.1 Notions of importance
 
-```{r impRFDef, fig.height=8, fig.cap="Importances des variables classées par ordre décroissant pour le jeu de données `spam`"}
+```{r impRFDef, fig.height=8, fig.cap="Importance of variables ranked in descending order for `spam` data."}
 RFDefImp <- randomForest(type ~ ., data = spamApp, importance=TRUE)
 varImpPlot(RFDefImp, type = 1, scale = FALSE, n.var = ncol(spamApp) - 1,
            cex = 0.8, main = "Importance des variables")
@@ -10,13 +10,14 @@ varImpPlot(RFDefImp, type = 1, scale = FALSE, n.var = ncol(spamApp) - 1,
 
 ## 4.3 Tree diversity and importance
 
-```{r impBagStump, fig.cap="Importance des variables pour un Bagging d'arbres à deux feuilles, données `spam`."}
+```{r impBagStump, fig.cap="Importance of the 20 most important variables for a Bagging of stumps, `spam` data."}
 bagStumpImp <- randomForest(type~., spamApp, mtry = ncol(spamApp) - 1,
                             maxnodes=2, importance=TRUE)
 varImpPlot(bagStumpImp, type = 1, scale = FALSE, n.var = 20, cex = 0.8,
            main = "Importance des variables")
+```
 
-```{r impRFStump, fig.cap="Importance des variables pour une RF d'arbres à deux feuilles avec la valeur de `mtry` par défaut, données `spam`."}
+```{r impRFStump, fig.cap="Importance of the 20 most important variables for an RF of stumps with the default value of `mtry` (equal to 7), `spam` data."}
 RFStumpImp <- randomForest(type~., spamApp, maxnodes=2, importance=TRUE)
 varImpPlot(RFStumpImp, type = 1, scale = FALSE, n.var = 20, cex = 0.8,
            main = "Importance des variables")
@@ -26,15 +27,16 @@ varImpPlot(RFStumpImp, type = 1, scale = FALSE, n.var = 20, cex = 0.8,
 
 ### 4.5.1 An illustration by simulation in regression
 
-```{r impFried, fig.cap="Importance des variables, données simulées en régression."}
+```{r impFried, fig.cap="Importance of variables, simulated data in regression."}
 library(mlbench)
 fried1Simu <- mlbench.friedman1(n = 500)
 fried1Data <- data.frame(fried1Simu$x, y = fried1Simu$y)
 fried1RFimp <- randomForest(y ~., fried1Data, importance = TRUE)
 varImpPlot(fried1RFimp, type = 1, scale = FALSE,
            main = "Importance des variables")
+```
 
-```{r impFriedPartialPlot, fig.cap="Effets marginaux, données simulées en régression."}
+```{r impFriedPartialPlot, fig.cap="Marginal effects, simulated data in regression."}
 partialPlot(fried1RFimp, fried1Data, x.var = "X1", main = "X1")
 ```
 
@@ -45,8 +47,9 @@ library("randomForest")
 data("Ozone", package = "mlbench")
 OzRFDefImp <- randomForest(V4 ~ ., Ozone, na.action = na.omit,
                            importance = TRUE)
+```
 
-```{r impOzoneRFDefImpPlot, fig.cap="Importance des variables, données `Ozone`."}
+```{r impOzoneRFDefImpPlot, fig.cap="Importance of variables, obtained with a default RF, `Ozone` data."}
 varImpPlot(OzRFDefImp, type = 1, scale = FALSE,
            main = "Importance des variables")
 ```
@@ -56,19 +59,23 @@ varImpPlot(OzRFDefImp, type = 1, scale = FALSE,
 ```{r impVac18load}
 library(randomForest)
 data("vac18", package = "mixOmics")
+```
 
 ```{r impVac18DataManage}
 geneExpr <- vac18$genes
 stimu <- vac18$stimulation
+```
 
 ```{r impVac18RFDefImp}
 vacRFDefImp <- randomForest(x = geneExpr, y = stimu, mtry = ncol(geneExpr)/3,
                             importance = TRUE)
+```
 
-```{r impVac18RFDefImpPlot, fig.height=6, fig.cap="Importance des 30 variables les plus importantes classées par ordre décroissant, données `Vac18`."}
+```{r impVac18RFDefImpPlot, fig.height=6, fig.cap="Importance of the 30 most important variables sorted in descending order, `Vac18` data."}
 varImpPlot(vacRFDefImp, type = 1, scale = FALSE, cex = 0.8)
+```
 
-```{r impVac18RFDefAllImpPlot, fig.cap="Importance de toutes les variables classées par ordre décroissant d'importance, données `Vac18`."}
+```{r impVac18RFDefAllImpPlot, fig.cap="Importance of all variables sorted in descending order of importance, `Vac18` data."}
 vacImp <- vacRFDefImp$importance[, nlevels(stimu) + 1]
 plot(sort(vacImp, decreasing = TRUE), type = "l", xlab = "Variables",
      ylab = "Importance des variables")

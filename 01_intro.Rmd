@@ -1,4 +1,4 @@
-# 1 Introduction
+# 1 Introduction to Random Forests with R
 
 ## 1.5 Data sets
 
